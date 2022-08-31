@@ -30,7 +30,8 @@ const main = async () => {
         "/graphql", 
         graphqlHTTP({
         schema,
-        graphiql: true
+        graphiql: true // For http://localhost:3001/graphql 
+        // graphiql lets you do some awesome stuff
         })
     );
 
