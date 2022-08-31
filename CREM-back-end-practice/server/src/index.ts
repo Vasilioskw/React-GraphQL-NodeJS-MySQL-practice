@@ -1,5 +1,6 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
+import { schema } from "./Schema"
 import cors from "cors";
 // import * as "typeorm";
 import { DataSource } from "typeorm";
@@ -10,8 +11,8 @@ const myDataSource = new DataSource({
     username: "root",
     password: "root",
     logging: true,
-    // synchonize: false,
-    entities: []
+    synchronize: false,
+    entities: [],
 })
 
 const main = async () => { 
@@ -25,11 +26,13 @@ const main = async () => {
     const app = express() // Creates an instance of express and allows middleware (including graphql)
     app.use(cors()) // Middleware fro back to front end
     app.use(express.json()) // This just means, we will be using json as the body for every request to server (Which makes it easy for graphql)
-   
-    // app.use("/graphql", graphqlHTTP({
-    //     schema,
-    //     graphql: true
-    // })) // We will uncomment when this is defined
+    app.use(
+        "/graphql", 
+        graphqlHTTP({
+        schema,
+        graphiql: true
+        })
+    );
 
     console.log("index.ts is being read!")
 
