@@ -4,6 +4,8 @@ import { schema } from "./Schema"
 import cors from "cors";
 // import * as "typeorm";
 import { DataSource } from "typeorm";
+import { Users } from './Entities/Users'
+
 
 const myDataSource = new DataSource({
     type: "mysql",
@@ -11,8 +13,8 @@ const myDataSource = new DataSource({
     username: "root",
     password: "root",
     logging: true,
-    synchronize: false,
-    entities: [],
+    synchronize: true,
+    entities: [Users],
 })
 
 const main = async () => { 
